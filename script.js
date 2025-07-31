@@ -444,7 +444,7 @@ function sendQuizResultsEmail(answers) {
     emailjs.send('service_v0th3ik', 'template_ova30qg', templateParams)
         .then(function(response) {
             console.log('SUCCESS! Quiz results sent to email.', response.status, response.text);
-            showNotification('Quiz results sent to your email! 💌');
+            showNotification('Quiz results sent to Aiks email! 💌');
         }, function(error) {
             console.log('FAILED... Quiz results email failed to send.', error);
             showNotification('Email failed to send, but quiz completed! 💕');
