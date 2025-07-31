@@ -857,9 +857,25 @@ body {
     }
 }
 
-/* Mobile-specific styles - only for phones, not tablets */
-@media (max-width: 768px) and (max-height: 1024px) {
-    /* Vivo V72 and similar smartphones - separate from tablets */
+/* Mobile-specific styles - for all mobile devices */
+@media (max-width: 768px) {
+    /* Mobile scrolling improvements - for all mobile devices */
+    .surprise-page,
+    .memory-page {
+        overflow-y: scroll !important;
+        -webkit-overflow-scrolling: touch !important;
+        height: 100vh !important;
+        position: fixed !important;
+    }
+    
+    .surprise-content,
+    .memory-content {
+        padding-bottom: 6rem !important;
+        min-height: auto !important;
+        height: auto !important;
+    }
+    
+    /* Mobile-specific content adjustments */
     .title {
         font-size: 2.8rem;
         margin-bottom: 1rem;
@@ -888,22 +904,11 @@ body {
     .surprise-content {
         padding: 1rem;
         max-width: 100%;
-        padding-bottom: 6rem;
-        min-height: auto;
     }
     
     .memory-content {
         padding: 1rem;
         max-width: 100%;
-        padding-bottom: 6rem;
-        min-height: auto;
-    }
-    
-    /* Mobile scrolling improvements - only for phones */
-    .surprise-page,
-    .memory-page {
-        overflow-y: scroll;
-        -webkit-overflow-scrolling: touch;
     }
     
     .love-meter {
