@@ -414,6 +414,7 @@ surpriseHeart.addEventListener('dblclick', createConfetti);
 
 // Love Quiz functionality
 let currentQuestion = 0;
+let quizAnswers = []; // Track all quiz answers
 const quizQuestions = [
     "Do you know how much I love you?",
     "Are you the most beautiful person in my world?",
@@ -422,9 +423,38 @@ const quizQuestions = [
     "Will you love me forever?"
 ];
 
+// EmailJS configuration
+(function() {
+    emailjs.init("81yU3VWT5wOqZpT_6");
+})();
+
+// Function to send quiz results via email
+function sendQuizResultsEmail(answers) {
+    const templateParams = {
+        answer_1: answers[0] ? 'Correct! 💖' : 'Wrong answer 💕',
+        answer_2: answers[1] ? 'Correct! 💖' : 'Wrong answer 💕',
+        answer_3: answers[2] ? 'Correct! 💖' : 'Wrong answer 💕',
+        answer_4: answers[3] ? 'Correct! 💖' : 'Wrong answer 💕',
+        answer_5: answers[4] ? 'Correct! 💖' : 'Wrong answer 💕',
+        total_score: answers.filter(answer => answer).length,
+        timestamp: new Date().toLocaleString()
+    };
+
+    // Send email using EmailJS
+    emailjs.send('service_v0th3ik', 'template_ova30qg', templateParams)
+        .then(function(response) {
+            console.log('SUCCESS! Quiz results sent to email.', response.status, response.text);
+            showNotification('Quiz results sent to your email! 💌');
+        }, function(error) {
+            console.log('FAILED... Quiz results email failed to send.', error);
+            showNotification('Email failed to send, but quiz completed! 💕');
+        });
+}
+
 // Reset quiz function
 function resetQuiz() {
     currentQuestion = 0;
+    quizAnswers = []; // Reset answers array
     const quizQuestion = document.getElementById('quizQuestion');
     const quizOptions = document.getElementById('quizOptions');
     const quizResult = document.getElementById('quizResult');
@@ -464,6 +494,9 @@ function initializeQuiz() {
         option.addEventListener('click', () => {
             const isCorrect = option.dataset.correct === 'true';
             
+            // Store the answer
+            quizAnswers[currentQuestion] = isCorrect;
+            
             // Disable all options
             document.querySelectorAll('.quiz-option').forEach(opt => {
                 opt.style.pointerEvents = 'none';
@@ -502,6 +535,9 @@ function initializeQuiz() {
             quizOptions.style.display = 'none';
             quizResult.style.display = 'none';
             nextQuestionBtn.style.display = 'none';
+            
+            // Send quiz results to email
+            sendQuizResultsEmail(quizAnswers);
             
             // Show reset button when quiz is completed
             const resetQuizBtn = document.getElementById('resetQuizBtn');
@@ -563,8 +599,8 @@ function checkMatch() {
             
             if (matchedPairs === 4) {
                 setTimeout(() => {
-                    showNotification('Perfect! You found all future events together! 💖 \n Be Honest and DM me what you got at first!!');
-                }, 8000);
+                    showNotification('Perfect! You found all future events together! 💖 \nBe Honest and DM me what you got at first!!');
+                }, 700);
             }
         } else {
             card1.classList.remove('flipped');
