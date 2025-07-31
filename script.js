@@ -883,22 +883,35 @@ function showPuzzleGame() {
 
 // Mobile and touch device optimizations
 function initializeMobileOptimizations() {
-    // Prevent zoom on double tap
+    // Prevent zoom on double tap (but allow scrolling)
     let lastTouchEnd = 0;
     document.addEventListener('touchend', function (event) {
         const now = (new Date()).getTime();
         if (now - lastTouchEnd <= 300) {
-            event.preventDefault();
+            // Only prevent default for double taps, not for scrolling
+            if (event.target.tagName === 'BUTTON' || 
+                event.target.closest('button') || 
+                event.target.closest('.clickable-heart') ||
+                event.target.closest('.enter-button') ||
+                event.target.closest('.back-button') ||
+                event.target.closest('.memory-back-button') ||
+                event.target.closest('.note') ||
+                event.target.closest('.gallery-item') ||
+                event.target.closest('.memory-card') ||
+                event.target.closest('.puzzle-piece')) {
+                event.preventDefault();
+            }
         }
         lastTouchEnd = now;
     }, false);
     
-    // Prevent pull-to-refresh on mobile
+    // Allow normal scrolling, only prevent pull-to-refresh on specific elements
     document.addEventListener('touchmove', function (event) {
-        if (event.scale !== 1) {
+        // Only prevent default for scaling gestures, not for normal scrolling
+        if (event.scale !== 1 && event.scale !== undefined) {
             event.preventDefault();
         }
-    }, { passive: false });
+    }, { passive: true }); // Changed to passive for better scroll performance
     
     // Add touch feedback for buttons
     const touchButtons = document.querySelectorAll('button, .clickable-heart, .enter-button, .back-button, .memory-back-button, .note, .gallery-item, .memory-card, .puzzle-piece');
@@ -918,20 +931,10 @@ function initializeMobileOptimizations() {
         });
     });
     
-    // Optimize scroll performance on mobile
-    let ticking = false;
-    function updateScroll() {
-        ticking = false;
-    }
-    
-    function requestTick() {
-        if (!ticking) {
-            requestAnimationFrame(updateScroll);
-            ticking = true;
-        }
-    }
-    
-    document.addEventListener('scroll', requestTick, { passive: true });
+    // Optimize scroll performance on mobile - use passive listener
+    document.addEventListener('scroll', function() {
+        // Passive scroll handling for better performance
+    }, { passive: true });
     
     // Add haptic feedback for mobile devices (if supported)
     function addHapticFeedback() {
@@ -947,4 +950,18 @@ function initializeMobileOptimizations() {
     }
     
     addHapticFeedback();
+    
+    // Ensure scrolling works on mobile by removing any potential scroll blockers
+    document.addEventListener('DOMContentLoaded', function() {
+        // Force enable scrolling on mobile
+        document.body.style.overflow = 'auto';
+        document.documentElement.style.overflow = 'auto';
+        
+        // Ensure fixed position elements don't block scrolling
+        const fixedElements = document.querySelectorAll('.surprise-page, .memory-page');
+        fixedElements.forEach(element => {
+            element.style.overflow = 'auto';
+            element.style.webkitOverflowScrolling = 'touch';
+        });
+    });
 } 
