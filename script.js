@@ -564,7 +564,7 @@ function checkMatch() {
             if (matchedPairs === 4) {
                 setTimeout(() => {
                     showNotification('Perfect! You found all future events together! 💖 \n Be Honest and DM me what you got at first!!');
-                }, 4500);
+                }, 8000);
             }
         } else {
             card1.classList.remove('flipped');
