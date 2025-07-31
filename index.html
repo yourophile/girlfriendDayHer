@@ -1,0 +1,222 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes, viewport-fit=cover">
+    <meta name="mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <meta name="theme-color" content="#ff6b9d">
+    <title>Happy Girlfriend Day! 💕</title>
+    <link rel="stylesheet" href="styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@400;700&family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body>
+    <div class="container">
+        <!-- Main Landing Page -->
+        <div class="landing-page" id="landingPage">
+            <div class="floating-hearts">
+                <div class="heart"></div>
+                <div class="heart"></div>
+                <div class="heart"></div>
+                <div class="heart"></div>
+                <div class="heart"></div>
+                <div class="heart"></div>
+                <div class="heart"></div>
+                <div class="heart"></div>
+            </div>
+            
+            <div class="main-content">
+                <h1 class="title">Happy Girlfriend Day!</h1>
+                <div class="subtitle">My Lovey 💖</div>
+                
+                <div class="love-meter">
+                    <div class="meter-text">How much do I love you?</div>
+                    <div class="meter-bar">
+                        <div class="meter-fill" id="loveMeter"></div>
+                    </div>
+                    <div class="meter-percentage">100%</div>
+                </div>
+                
+                <div class="interactive-elements">
+                    <div class="clickable-heart" id="clickableHeart">
+                        <i class="fas fa-heart"></i>
+                        <span class="heart-text">Click me for a surprise! 💝</span>
+                    </div>
+                    
+                    <div class="love-notes">
+                        <div class="note" id="note1">You make every day special ✨</div>
+                        <div class="note" id="note2">Your smile lights up my world 🌟</div>
+                        <div class="note" id="note3">I'm so lucky to have you 💫</div>
+                    </div>
+                </div>
+                
+                <div class="enter-button" id="enterButton">
+                    <span>Enter My Heart</span>
+                    <i class="fas fa-arrow-right"></i>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Surprise Page -->
+        <div class="surprise-page" id="surprisePage">
+            <div class="surprise-content">
+                <div class="surprise-heart-container">
+                    <div class="surprise-heart" id="surpriseHeart">
+                        <i class="fas fa-heart"></i>
+                    </div>
+                </div>
+                
+                <h2 class="surprise-title">My Lovey 💕</h2>
+                
+                <div class="message-container">
+                    <div class="message" id="message1">
+                        <p>Every moment with you is a gift I cherish deeply. Your love has transformed my world in ways I never imagined possible.</p>
+                    </div>
+                    <div class="message" id="message2">
+                        <p>You are my sunshine on cloudy days, my comfort in difficult times, and my joy in every celebration.</p>
+                    </div>
+                    <div class="message" id="message3">
+                        <p>Thank you for being you - beautiful, kind, loving, and absolutely perfect in every way.</p>
+                    </div>
+                </div>
+                
+                <div class="love-gallery">
+                    <div class="gallery-item">
+                        <i class="fas fa-star"></i>
+                        <span>You're my star</span>
+                    </div>
+                    <div class="gallery-item">
+                        <i class="fas fa-moon"></i>
+                        <span>My moon</span>
+                    </div>
+                    <div class="gallery-item">
+                        <i class="fas fa-sun"></i>
+                        <span>My sunshine</span>
+                    </div>
+                    <div class="gallery-item">
+                        <i class="fas fa-rainbow"></i>
+                        <span>My rainbow</span>
+                    </div>
+                </div>
+                
+                <!-- Interactive Love Quiz -->
+                <div class="love-quiz-section">
+                    <h3 class="quiz-title">Do you know how much I love you Aritrii? 💝</h3>
+                    <div class="quiz-container">
+                        <div class="quiz-question" id="quizQuestion">
+                            <p>Click the heart to start our love quiz!</p>
+                        </div>
+                        <div class="quiz-options" id="quizOptions" style="display: none;">
+                            <button class="quiz-option" data-correct="true">Absolutely! 💖</button>
+                            <button class="quiz-option" data-correct="false">Maybe... 🤔</button>
+                            <button class="quiz-option" data-correct="false">Not sure 😅</button>
+                        </div>
+                        <div class="quiz-result" id="quizResult" style="display: none;"></div>
+                        <button class="next-question-btn" id="nextQuestionBtn" style="display: none;">Next Question 💕</button>
+                        <button class="reset-quiz-btn" id="resetQuizBtn" style="display: none;">Restart Quiz 🔄</button>
+                    </div>
+                </div>
+                
+                <!-- Love Puzzle Game -->
+                <div class="love-puzzle-section" id="lovePuzzleSection" style="display: none;">
+                    <h3 class="puzzle-title">Solve Our Love Puzzle 💕</h3>
+                    <div class="puzzle-container">
+                        <div class="puzzle-grid" id="puzzleGrid">
+                            <!-- Puzzle pieces will be generated by JavaScript -->
+                        </div>
+                        <div class="puzzle-controls">
+                            <button class="shuffle-puzzle-btn" id="shufflePuzzleBtn">Shuffle Puzzle 🔄</button>
+                            <div class="puzzle-timer" id="puzzleTimer">Time: 00:00</div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Love Letter Generator -->
+                <div class="letter-generator-section">
+                    <h3 class="letter-title">Generate a Love Letter 💌</h3>
+                    <div class="letter-generator">
+                        <button class="generate-letter-btn" id="generateLetterBtn">Generate Love Letter ✨</button>
+                        <div class="generated-letter" id="generatedLetter"></div>
+                    </div>
+                </div>
+                
+                <!-- Love Counter -->
+                <div class="love-counter-section">
+                    <h3 class="counter-title">Click to Count Our Love 💕</h3>
+                    <div class="love-counter">
+                        <div class="counter-display" id="loveCounter">0</div>
+                        <button class="count-love-btn" id="countLoveBtn">Count My Love 💖</button>
+                        <div class="counter-message" id="counterMessage"></div>
+                    </div>
+                </div>
+                
+                <div class="final-message">
+                    <h3>I Love You More Than Words Can Express</h3>
+                    <p>Your Forever & Always Aiks 💖</p>
+                </div>
+                
+                <div class="back-button" id="backButton">
+                    <i class="fas fa-arrow-left"></i>
+                    <span>Back to Love</span>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Memory Game Page (3rd Page) -->
+        <div class="memory-page" id="memoryPage">
+            <div class="memory-content">
+                <h2 class="memory-page-title">Our Love Memory Game 💕</h2>
+                <p class="memory-subtitle">What ever you match first we gonna have it within few months!😉💕</p>
+                
+                <!-- Love Memory Game -->
+                <div class="memory-game-section">
+                    <div class="memory-game" id="memoryGame">
+                        <div class="memory-card" data-card="1">
+                            <div class="card-front">💖</div>
+                            <div class="card-back">First Date</div>
+                        </div>
+                        <div class="memory-card" data-card="1">
+                            <div class="card-front">💖</div>
+                            <div class="card-back">First Date</div>
+                        </div>
+                        <div class="memory-card" data-card="2">
+                            <div class="card-front">💖</div>
+                            <div class="card-back">First Kiss</div>
+                        </div>
+                        <div class="memory-card" data-card="2">
+                            <div class="card-front">💖</div>
+                            <div class="card-back">First Kiss</div>
+                        </div>
+                        <div class="memory-card" data-card="3">
+                            <div class="card-front">💖</div>
+                            <div class="card-back">Vacation</div>
+                        </div>
+                        <div class="memory-card" data-card="3">
+                            <div class="card-front">💖</div>
+                            <div class="card-back">Vacation</div>
+                        </div>
+                        <div class="memory-card" data-card="4">
+                            <div class="card-front">💖</div>
+                            <div class="card-back">Anniversary</div>
+                        </div>
+                        <div class="memory-card" data-card="4">
+                            <div class="card-front">💖</div>
+                            <div class="card-back">Anniversary</div>
+                        </div>
+                    </div>
+                    <button class="reset-memory-btn" id="resetMemoryBtn">Reset Game 🔄</button>
+                </div>
+                
+                <div class="memory-back-button" id="memoryBackButton">
+                    <i class="fas fa-arrow-left"></i>
+                    <span>Back to Surprises</span>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <script src="script.js"></script>
+</body>
+</html> 
