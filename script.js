@@ -563,7 +563,7 @@ function checkMatch() {
             
             if (matchedPairs === 4) {
                 setTimeout(() => {
-                    showNotification('Perfect! You found all future events together! 💖 \<br\> Be Honest and DM me what you got at first!!');
+                    showNotification('Perfect! You found all future events together! 💖 \nBe Honest and DM me what you got at first!!');
                 }, 700);
             }
         } else {
